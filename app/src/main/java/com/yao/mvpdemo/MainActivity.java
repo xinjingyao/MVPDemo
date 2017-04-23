@@ -1,5 +1,6 @@
 package com.yao.mvpdemo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +13,11 @@ import com.yao.mvpdemo.entity.Book;
 import com.yao.mvpdemo.presenter.BookPresenter;
 import com.yao.mvpdemo.presenter.Presenter;
 import com.yao.mvpdemo.view.IBookView;
+import com.yao.mvpdemo.view.SwipeBack1Activity;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tv;
-    private Button btn;
+    private Button btn, btn1;
     private BookPresenter mPresenter;
     private ProgressBar mProgressBar;
 
@@ -29,11 +31,15 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         tv = (TextView) findViewById(R.id.tv);
         btn = (Button) findViewById(R.id.btn);
+        btn1 = (Button) findViewById(R.id.btn1);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mPresenter.getSearchBooks("金瓶梅", null, 0, 1);
             }
+        });
+        btn1.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, SwipeBack1Activity.class));
         });
     }
 
